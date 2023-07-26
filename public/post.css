@@ -1,0 +1,26 @@
+.user-post{
+    background-color: black;
+    width: 45em;
+    margin-left: 21em;
+    border-radius: 1em;
+}
+
+.user-post h3, p{
+    color: white;
+    /* background-color: aqua; */
+}
+
+.user-post h3{
+    font-size: 3em;
+    margin-left: 1em;
+    padding-top: 20px;
+}
+
+.user-post p{
+    margin-left: 1.5em;
+    font-size: 2em;
+}
+
+.user-post .del-btn{
+    color: aqua;
+}
