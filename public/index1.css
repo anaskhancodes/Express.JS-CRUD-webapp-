@@ -1,0 +1,201 @@
+body {
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    background-color: rgb(59, 59, 133);
+    margin-left: -125px;
+
+}
+
+.min-heading {
+    font-size: 45px;
+    margin-left: 570px;
+    color: white;
+}
+
+.contaner,
+.contaner-1,
+.conatner-2,
+.feed,
+.auth {
+    margin-top: 40px;
+    margin-left: 425px;
+}
+
+.contaner {
+    height: 450px;
+    width: 727px;
+    background-color: cadetblue;
+
+}
+
+.contaner div {
+    width: 696px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10px;
+    border-radius: 20px;
+    display: flex;
+    /* justify-content: center; */
+    margin-top: 20px;
+}
+
+.contaner h3 {
+    margin-left: 20px;
+}
+
+.contaner h1 {
+    margin-left: 130px;
+    color: white;
+}
+
+.contaner .Heading {
+    display: flex;
+    justify-content: center;
+}
+
+.contaner .post-1 span,
+.post-2 span {
+    color: green;
+}
+
+.contaner .post-3 span {
+    color: rgb(204, 192, 26);
+}
+
+.contaner .post-4 span {
+    color: rgb(25, 101, 214);
+}
+
+.contaner .post-5 span {
+    color: rgb(212, 87, 118);
+}
+
+/* 
+
+ */
+
+.contaner-1 {
+    height: 450px;
+    width: 786px;
+    background-color: cadetblue;
+}
+
+.contaner-1 div {
+    width: 763px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10px;
+    border-radius: 20px;
+    display: flex;
+    /* justify-content: center; */
+    margin-top: 30px;
+}
+
+.contaner-1 h1 {
+    margin-left: 85px;
+    color: white;
+}
+
+.contaner-1 h3 {
+    margin-left: 20px;
+}
+
+.contaner-1 .commint-1 span,
+.commint-2 span {
+    color: green;
+}
+
+.contaner-1 .commint-3 span {
+    color: rgb(25, 101, 214);
+}
+
+.contaner-1 .commint-4 span {
+    color: rgb(212, 87, 118);
+}
+
+.conatner-2 {
+    height: 210px;
+    width: 690px;
+    background-color: cadetblue;
+}
+
+.conatner-2 div {
+    width: 665px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10px;
+    border-radius: 20px;
+    display: flex;
+    /* justify-content: center; */
+    margin-top: 30px;
+}
+
+.conatner-2 h3 {
+    margin-left: 20px;
+}
+
+.conatner-2 h1 {
+    margin-left: 180px;
+    color: white;
+}
+
+.conatner-2 .feed span {
+    color: green;
+}
+
+.auth {
+    height: 255px;
+    width: 670px;
+    background-color: cadetblue;
+}
+
+.auth div {
+    width: 645px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10px;
+    border-radius: 20px;
+    display: flex;
+
+    /* justify-content: center; */
+    margin-top: 30px;
+}
+
+.auth h3 {
+        margin-left: 13px;
+        font-size: 19px;
+}
+
+.auth h1 {
+    margin-left: 70px;
+    color: white;
+}
+
+.auth h3 span {
+    color: rgb(204, 192, 26);
+
+}
+
+p{
+    margin-left: 486px;
+    color: white;
+    font-size: 21px;
+}
+
+p a{
+    color: white;
+}
+
+@media only screen and (max-width: 320px) {
+
+    .contaner,
+    .contaner-1,
+    .conatner-2,
+    .feed,
+    .auth {
+        margin-left: 40px;
+    }
+}
