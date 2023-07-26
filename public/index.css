@@ -1,201 +1,50 @@
-body {
-    margin: 0%;
-    padding: 0%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    background-color: rgb(59, 59, 133);
-    margin-left: -125px;
-
+h1{
+    font-size: 4.5em;
+    color: black;
+    margin-left: 7em;
+    text-decoration: underline;
 }
 
-.min-heading {
-    font-size: 45px;
-    margin-left: 570px;
+h2{
+    font-size: 2em;
+    color: black;
+    margin-left: 1em;
+}
+
+label{
+    font-size: 2em;
     color: white;
+    margin-left: 1.5em;
 }
 
-.contaner,
-.contaner-1,
-.conatner-2,
-.feed,
-.auth {
-    margin-top: 40px;
-    margin-left: 425px;
+input{
+    margin-left: 2.5em;
+    margin-top: 1em;
+    width: 23em;
+    height: 1em;
+    border-radius: 2em;
+    border: none;
+    padding: 1em;
 }
 
-.contaner {
-    height: 450px;
-    width: 727px;
-    background-color: cadetblue;
-
+form{
+    margin-left: 1em;
+    background-color: black;
+    width: 25em;
+    padding: 2em;
 }
 
-.contaner div {
-    width: 696px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 10px;
-    border-radius: 20px;
-    display: flex;
-    /* justify-content: center; */
-    margin-top: 20px;
+button{
+    margin-top: 2em;
+    margin-left: 18em;
+    width: 9em;
+    height: 3em;
+    border-radius: 1em;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.contaner h3 {
-    margin-left: 20px;
-}
-
-.contaner h1 {
-    margin-left: 130px;
-    color: white;
-}
-
-.contaner .Heading {
-    display: flex;
-    justify-content: center;
-}
-
-.contaner .post-1 span,
-.post-2 span {
-    color: green;
-}
-
-.contaner .post-3 span {
-    color: rgb(204, 192, 26);
-}
-
-.contaner .post-4 span {
-    color: rgb(25, 101, 214);
-}
-
-.contaner .post-5 span {
-    color: rgb(212, 87, 118);
-}
-
-/* 
-
- */
-
-.contaner-1 {
-    height: 450px;
-    width: 786px;
-    background-color: cadetblue;
-}
-
-.contaner-1 div {
-    width: 763px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 10px;
-    border-radius: 20px;
-    display: flex;
-    /* justify-content: center; */
-    margin-top: 30px;
-}
-
-.contaner-1 h1 {
-    margin-left: 85px;
-    color: white;
-}
-
-.contaner-1 h3 {
-    margin-left: 20px;
-}
-
-.contaner-1 .commint-1 span,
-.commint-2 span {
-    color: green;
-}
-
-.contaner-1 .commint-3 span {
-    color: rgb(25, 101, 214);
-}
-
-.contaner-1 .commint-4 span {
-    color: rgb(212, 87, 118);
-}
-
-.conatner-2 {
-    height: 210px;
-    width: 690px;
-    background-color: cadetblue;
-}
-
-.conatner-2 div {
-    width: 665px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 10px;
-    border-radius: 20px;
-    display: flex;
-    /* justify-content: center; */
-    margin-top: 30px;
-}
-
-.conatner-2 h3 {
-    margin-left: 20px;
-}
-
-.conatner-2 h1 {
-    margin-left: 180px;
-    color: white;
-}
-
-.conatner-2 .feed span {
-    color: green;
-}
-
-.auth {
-    height: 255px;
-    width: 670px;
-    background-color: cadetblue;
-}
-
-.auth div {
-    width: 645px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 10px;
-    border-radius: 20px;
-    display: flex;
-
-    /* justify-content: center; */
-    margin-top: 30px;
-}
-
-.auth h3 {
-        margin-left: 13px;
-        font-size: 19px;
-}
-
-.auth h1 {
-    margin-left: 70px;
-    color: white;
-}
-
-.auth h3 span {
-    color: rgb(204, 192, 26);
-
-}
-
-p{
-    margin-left: 486px;
-    color: white;
-    font-size: 21px;
-}
-
-p a{
-    color: white;
-}
-
-@media only screen and (max-width: 320px) {
-
-    .contaner,
-    .contaner-1,
-    .conatner-2,
-    .feed,
-    .auth {
-        margin-left: 40px;
-    }
+button:hover{
+    transform: scale(1.2);
 }
