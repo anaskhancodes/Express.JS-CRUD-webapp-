@@ -48,7 +48,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
 
-    <script src="index.js"></script>
 
     <script type="module">
 
@@ -56,7 +55,7 @@
 
             let postTitle = document.querySelector("#postTitle").value;
             let postText = document.querySelector("#postText").value;
-   
+
             // baseUrl/api/v1/post
             axios.post(`/api/v1/post`, {
                 title: postTitle,
@@ -109,20 +108,17 @@
 
         window.delPost = function (postId) {
 
-            console.log("delete: ", postId);
+            console.log("delete => ", postId);
 
-
-            // baseUrl/api/v1/post
             axios.delete(`/api/v1/post/${postId}`)
-                .then(function (response) {
-                    console.log(response.data);
 
-                    getAllPost();
+                .then(function (response) {
+
+                    getAllPost()
                 })
                 .catch(function (error) {
-                    // handle error
                     console.log(error.data);
-                    document.querySelector("#result").innerHTML = "error in post submission"
+                    document.querySelector("#posts").innerHTML = "error in Post Submission";
                 })
         }
 

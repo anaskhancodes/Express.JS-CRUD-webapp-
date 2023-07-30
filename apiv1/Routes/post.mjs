@@ -96,19 +96,26 @@ router.put('/post/:postId', (req, res, next) => {
 
 // DELETE  /api/v1/post/:userId/:postId
 router.delete('/post/:postId', (req, res, next) => {
+    console.log("This Post is Delete => ", Date());
 
     if (!req.params.postId) {
-        res.status(403).send(`post id must be a valid id`)
+        res.status(403).send("Post id must be valid");
     }
 
     for (let i = 0; i < posts.length; i++) {
+
         if (posts[i].id === req.params.postId) {
-            posts.splice(i, 1)
-            res.send('post deleted with id ' + req.params.postId);
+
+
+            posts.splice(i, 1);
+            res.send("Post not found with this " + req.params.postId + " id");
             return;
         }
     }
-    res.send('post not found with id ' + req.params.postId);
+
+
+    res.status(404).send("Post not found with this " + req.params.postId + " id");
+
 })
 
 export default router
