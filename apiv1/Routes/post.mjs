@@ -46,15 +46,34 @@ router.post('/post', async (req, res, next) => {
 
     res.send(responseHTML);
 })
+
+
+
 // GET     /api/v1/posts
-router.get('/posts', (req, res, next) => {
-    // console.log('this is signup!', new Date());
-    res.send(posts);
-})
+// router.get('/posts', (req, res, next) => {
+
+//     res.send(posts);
+// })
+
+
+router.get('/posts', async(req, res, next) => {
+    try {
+        const cursor = col.find({}).sort({ timestamp: -1 });
+        let results = (await cursor.toArray()).reverse();
+
+        console.log(results);
+        res.send(results);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+
+
 
 // GET     /api/v1/post/:postId
 router.get('/post/:postId', (req, res, next) => {
-    // console.log('this is signup!', new Date());
+
 
     if (req.params.postId) {
         res.status(403).send(`post id must be a valid number, no alphabet is allowed in post id`)
@@ -92,29 +111,48 @@ router.put('/post/:postId', (req, res, next) => {
     res.send('post not found with id ' + req.params.postId);
 })
 
-// DELETE  /api/v1/post/:userId/:postId
-router.delete('/post/:postId', (req, res, next) => {
-    console.log("This Post is Delete => ", Date());
-
-    if (!req.params.postId) {
-        res.status(403).send("Post id must be valid");
-    }
-
-    for (let i = 0; i < posts.length; i++) {
-
-        if (posts[i].id === req.params.postId) {
 
 
-            posts.splice(i, 1);
-            res.send("Post not found with this " + req.params.postId + " id");
-            return;
+// router.put('/post/:postId', async(req, res, next) => {
+  
+//     const postId = req.params.postId;
+//     const { post } = req.body;
+
+//     if (!post) {
+//         res.status(403).send('Required parameters missing. Please provide both "post" and "price".');
+//         return;
+//     }
+
+//     try {
+//         const updateResponse = await col.updateOne({ id: postId }, { $set: { post } });
+
+//         if (updateResponse.matchedCount === 1) {
+//             res.send(`post with id ${postId} updated successfully.`);
+//         } else {
+//             res.send('post not found with the given id.');
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// });
+
+
+
+router.delete('/post/:postId', async(req, res, next) => {
+    const postId = req.params.postId;
+
+    try {
+        const deleteResponse = await col.deleteOne({ id: postId });
+        if (deleteResponse.deletedCount === 1) {
+            res.send(`post with id ${postId} deleted successfully.`);
+        } else {
+            res.send('Post not found with the given id.');
         }
+    } catch (error) {
+        console.error(error);
     }
+});
 
-
-    res.status(404).send("Post not found with this " + req.params.postId + " id");
-
-})
 
 export default router
 
