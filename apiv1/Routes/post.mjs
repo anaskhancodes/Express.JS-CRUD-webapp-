@@ -1,6 +1,12 @@
 
 import express from 'express';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import { client } from './../../mongobd.mjs'
+
+const db = client.db("CRUD_db");
+
+const col = db.collection("posts");
+
 let router = express.Router()
 
 // not recommended at all - server should be stateless
@@ -13,7 +19,7 @@ let posts = [
 ]
 
 // POST    /api/v1/post
-router.post('/post', (req, res, next) => {
+router.post('/post', async (req, res, next) => {
 
     if (
         !req.body.title
@@ -26,23 +32,29 @@ router.post('/post', (req, res, next) => {
 
     const responseHTML = `<div style="color: white; margin-left: 20px;">Post is Created`
 
-    posts.unshift({
+
+
+    const insertResponce = await col.insertOne({
         id: nanoid(),
         title: req.body.title,
         text: req.body.text,
-    })
+    });
+
+    console.log("insertResponce => ", insertResponce)
+
+
 
     res.send(responseHTML);
 })
 // GET     /api/v1/posts
 router.get('/posts', (req, res, next) => {
-    console.log('this is signup!', new Date());
+    // console.log('this is signup!', new Date());
     res.send(posts);
 })
 
 // GET     /api/v1/post/:postId
 router.get('/post/:postId', (req, res, next) => {
-    console.log('this is signup!', new Date());
+    // console.log('this is signup!', new Date());
 
     if (req.params.postId) {
         res.status(403).send(`post id must be a valid number, no alphabet is allowed in post id`)

@@ -2,6 +2,10 @@ import express from 'express'
 import path from 'path';
 const __dirname = path.resolve();
 
+
+
+
+
 import apiv1Router from './apiv1/main.mjs'
 
 
@@ -12,7 +16,7 @@ app.use(express.json()); // body parser
 
 app.use("/api/v1", apiv1Router)
 
-    // /static/vscode_windows.exe
+// /static/vscode_windows.exe
 app.use("/static", express.static(path.join(__dirname, 'static')))
 
 app.use(express.static(path.join(__dirname, 'public')))
