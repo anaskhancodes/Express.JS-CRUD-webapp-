@@ -7,28 +7,24 @@ let router = express.Router()
 let posts = [
     {
         id: nanoid(),
-        title: "abc post title",
-        text: "some post text"
+        title: "Hello Evreyone",
+        text: "Welcome Welcome"
     }
 ]
 
 // POST    /api/v1/post
 router.post('/post', (req, res, next) => {
-    console.log('this is signup!', new Date());
 
     if (
         !req.body.title
         || !req.body.text
     ) {
         res.status(403);
-        res.send(`required parameters missing, 
-        example request body:
-        {
-            title: "abc post title",
-            text: "some post text"
-        } `);
+        res.send(`required parameters missing`);
         return;
     }
+
+    const responseHTML = `<div style="color: white; margin-left: 20px;">Post is Created`
 
     posts.unshift({
         id: nanoid(),
@@ -36,7 +32,7 @@ router.post('/post', (req, res, next) => {
         text: req.body.text,
     })
 
-    res.send('post created');
+    res.send(responseHTML);
 })
 // GET     /api/v1/posts
 router.get('/posts', (req, res, next) => {
@@ -61,24 +57,14 @@ router.get('/post/:postId', (req, res, next) => {
     res.send('post not found with id ' + req.params.postId);
 })
 
-// PUT     /api/v1/post/:userId/:postId
-// {
-//     title: "updated title",
-//     text: "updated text"
-// }
+
 
 router.put('/post/:postId', (req, res, next) => {
 
     if (!req.params.postId
         || !req.body.text
         || !req.body.title) {
-        res.status(403).send(`example put body: 
-        PUT     /api/v1/post/:postId
-        {
-            title: "updated title",
-            text: "updated text"
-        }
-        `)
+        res.status(403).send("Post id must be valid");
     }
 
     for (let i = 0; i < posts.length; i++) {
