@@ -88,53 +88,35 @@ router.get('/post/:postId', (req, res, next) => {
     res.send('post not found with id ' + req.params.postId);
 })
 
+// PUT     /api/v1/post/:postId
+router.put('/post/:postId', async (req, res, next) => {
+    const postId = req.params.postId;
 
-
-router.put('/post/:postId', (req, res, next) => {
-
-    if (!req.params.postId
-        || !req.body.text
-        || !req.body.title) {
-        res.status(403).send("Post id must be valid");
+    if (!postId || !req.body.text || !req.body.title) {
+        res.status(403).send("Post id must be valid and title/text must be provided.");
+        return;
     }
 
-    for (let i = 0; i < posts.length; i++) {
-        if (posts[i].id === req.params.postId) {
-            posts[i] = {
-                text: req.body.text,
-                title: req.body.title,
+    try {
+        const updateResponse = await col.updateOne(
+            { id: postId },
+            {
+                $set: {
+                    title: req.body.title,
+                    text: req.body.text,
+                }
             }
-            res.send('post updated with id ' + req.params.postId);
-            return;
+        );
+
+        if (updateResponse.modifiedCount === 1) {
+            res.send('Post updated with id ' + postId);
+        } else {
+            res.send('Post not found with id ' + postId);
         }
+    } catch (error) {
+        console.error(error);
     }
-    res.send('post not found with id ' + req.params.postId);
-})
-
-
-
-// router.put('/post/:postId', async(req, res, next) => {
-  
-//     const postId = req.params.postId;
-//     const { post } = req.body;
-
-//     if (!post) {
-//         res.status(403).send('Required parameters missing. Please provide both "post" and "price".');
-//         return;
-//     }
-
-//     try {
-//         const updateResponse = await col.updateOne({ id: postId }, { $set: { post } });
-
-//         if (updateResponse.matchedCount === 1) {
-//             res.send(`post with id ${postId} updated successfully.`);
-//         } else {
-//             res.send('post not found with the given id.');
-//         }
-//     } catch (error) {
-//         console.error(error);
-//     }
-// });
+});
 
 
 
