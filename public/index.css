@@ -1,21 +1,21 @@
-body{
+body {
     background-image: url(https://wallpapers.com/images/featured/grey-5xvepms9fbbi0bmh.jpg);
 }
 
-h1{
+h1 {
     font-size: 4.5em;
     color: white;
     margin-left: 7em;
     text-decoration: underline;
 }
 
-h2{
+h2 {
     font-size: 2em;
     color: white;
     margin-left: 1em;
 }
 
-h4{
+h4 {
     /* font-size: 4.5em; */
     color: white;
     /* font-weight: 400; */
@@ -26,13 +26,13 @@ h4{
 }
 
 
-label{
+label {
     font-size: 2em;
     color: white;
     margin-left: 1.5em;
 }
 
-input{
+input {
     margin-left: 2.5em;
     margin-top: 1em;
     width: 23em;
@@ -42,14 +42,14 @@ input{
     padding: 1em;
 }
 
-form{
+form {
     margin-left: 1em;
     background-color: black;
     width: 25em;
     padding: 2em;
 }
 
-button{
+button {
     margin-top: 2em;
     margin-left: 10em;
     margin-bottom: 1em;
@@ -61,6 +61,44 @@ button{
     transition: 0.3s;
 }
 
-button:hover{
+button:hover {
     transform: scale(1.2);
 }
+
+/* @media screen and (max-width: 320px) {
+
+    h1 {
+        font-size: 5.5em;
+        color: white;
+        width: 478px;
+    }
+
+    h4 {
+        font-size: 4.5em;
+        color: white;
+        width: 35em;
+        left: 17em;
+        text-decoration: underline;
+        position: absolute;
+        top: 145px;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: white;
+        margin-left: 4em;
+        margin-top: 4em;
+        width: 6em;
+    }
+
+    form {
+        margin-left: 7em;
+        background-color: black;
+        width: 25em;
+        padding: 2em;
+    }
+
+
+} */
+
+
