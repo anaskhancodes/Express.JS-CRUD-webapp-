@@ -30,22 +30,24 @@ router.post('/post', async (req, res, next) => {
         return;
     }
 
-    const responseHTML = `<div style="color: white; margin-left: 20px;">Post is Created`
+    const responseHTML = `<div style="color: white; margin-left: 20px;">Post is Created`;
 
 
+    try {
+        const insertResponce = await col.insertOne({
+            id: nanoid(), 
+            title: req.body.title,
+            text: req.body.text,
+        });
 
-    const insertResponce = await col.insertOne({
-        id: nanoid(),
-        title: req.body.title,
-        text: req.body.text,
-    });
+        console.log("insertResponce => ", insertResponce);
 
-    console.log("insertResponce => ", insertResponce)
-
-
-
-    res.send(responseHTML);
-})
+        res.send(responseHTML);
+    } catch (error) {
+        console.log("Error", error );
+        res.status(500).send("Server error please try again later")
+    }
+});
 
 
 router.get('/posts', async (req, res, next) => {
@@ -53,10 +55,11 @@ router.get('/posts', async (req, res, next) => {
         const cursor = col.find({}).sort({ timestamp: -1 });
         let results = (await cursor.toArray()).reverse();
 
-        console.log(results);
+        console.log("result ",results);
         res.send(results);
     } catch (error) {
-        console.error(error);
+        console.log("Error", error );
+        res.status(500).send("Server error please try again later")
     }
 });
 
@@ -64,21 +67,29 @@ router.get('/posts', async (req, res, next) => {
 
 
 // GET     /api/v1/post/:postId
-router.get('/post/:postId', (req, res, next) => {
+router.get('/post/:postId', async (req, res, next) => {
 
 
     if (req.params.postId) {
         res.status(403).send(`post id must be a valid number, no alphabet is allowed in post id`)
     }
 
-    for (let i = 0; i < posts.length; i++) {
-        if (posts[i].id === req.params.postId) {
-            res.send(posts[i]);
-            return;
-        }
+
+    try {
+        const cursor = col.find({_id: req.params.postId}).sort({ timestamp: -1 });
+        let results = (await cursor.toArray()).reverse();
+
+        console.log("result ",results);
+        res.send(results);
+    } catch (error) {
+        console.log("Error", error );
+        res.status(500).send("Server error please try again later")
     }
-    res.send('post not found with id ' + req.params.postId);
 })
+
+
+
+
 
 // PUT     /api/v1/post/:postId
 router.put('/post/:postId', async (req, res, next) => {
@@ -112,7 +123,7 @@ router.put('/post/:postId', async (req, res, next) => {
 
 
 
-router.delete('/post/:postId', async(req, res, next) => {
+router.delete('/post/:postId', async (req, res, next) => {
     const postId = req.params.postId;
 
     try {
