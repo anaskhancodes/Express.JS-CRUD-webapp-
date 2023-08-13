@@ -2,6 +2,7 @@
 import express from 'express';
 import { nanoid } from 'nanoid';
 import { client } from './../../mongobd.mjs'
+import { ObjectId } from 'mongodb'
 
 const db = client.db("CRUD_db");
 
@@ -35,7 +36,7 @@ router.post('/post', async (req, res, next) => {
 
     try {
         const insertResponce = await col.insertOne({
-            id: nanoid(), 
+            id: nanoid(),
             title: req.body.title,
             text: req.body.text,
         });
@@ -44,7 +45,7 @@ router.post('/post', async (req, res, next) => {
 
         res.send(responseHTML);
     } catch (error) {
-        console.log("Error", error );
+        console.log("Error", error);
         res.status(500).send("Server error please try again later")
     }
 });
@@ -55,10 +56,10 @@ router.get('/posts', async (req, res, next) => {
         const cursor = col.find({}).sort({ timestamp: -1 });
         let results = (await cursor.toArray()).reverse();
 
-        console.log("result ",results);
+        console.log("result ", results);
         res.send(results);
     } catch (error) {
-        console.log("Error", error );
+        console.log("Error", error);
         res.status(500).send("Server error please try again later")
     }
 });
@@ -69,20 +70,20 @@ router.get('/posts', async (req, res, next) => {
 // GET     /api/v1/post/:postId
 router.get('/post/:postId', async (req, res, next) => {
 
-
-    if (req.params.postId) {
-        res.status(403).send(`post id must be a valid number, no alphabet is allowed in post id`)
+    if (!ObjectId.isValid(req.params.postId)) {
+        res.status(403).send(`Invalid Post id`)
+        return;
     }
 
 
     try {
-        const cursor = col.find({_id: req.params.postId}).sort({ timestamp: -1 });
-        let results = (await cursor.toArray()).reverse();
 
-        console.log("result ",results);
-        res.send(results);
+        let result = await col.findOne({ _id: new ObjectId(req.params.postId) })//.sort({ timestamp: -1 }).reverse();
+
+        console.log("result ", result); // [{...}]   
+        res.send(result);
     } catch (error) {
-        console.log("Error", error );
+        console.log("Error", error);
         res.status(500).send("Server error please try again later")
     }
 })
@@ -95,19 +96,25 @@ router.get('/post/:postId', async (req, res, next) => {
 router.put('/post/:postId', async (req, res, next) => {
     const postId = req.params.postId;
 
-    if (!postId || !req.body.text || !req.body.title) {
-        res.status(403).send("Post id must be valid and title/text must be provided.");
+    if (!ObjectId.isValid(req.params.postId)) {
+        res.status(403).send(`Invalid Post id`)
         return;
     }
 
+    let dataUpdated = {};
+
+    if (req.body.title) { dataUpdated.title = req.body.title };
+    // 
+    if (req.body.text) { dataUpdated.text = req.body.text };
+
     try {
         const updateResponse = await col.updateOne(
-            { id: postId },
             {
-                $set: {
-                    title: req.body.title,
-                    text: req.body.text,
-                }
+                _id: new ObjectId(req.params.postId)
+            },
+
+            {
+                $set: dataUpdated
             }
         );
 
