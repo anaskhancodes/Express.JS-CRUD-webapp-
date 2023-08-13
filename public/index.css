@@ -65,40 +65,10 @@ button:hover {
     transform: scale(1.2);
 }
 
-/* @media screen and (max-width: 320px) {
 
-    h1 {
-        font-size: 5.5em;
-        color: white;
-        width: 478px;
+/* @media only screen and (max-width: 320px){
+    form{
+        width: 10em;
+        height: 10em;
     }
-
-    h4 {
-        font-size: 4.5em;
-        color: white;
-        width: 35em;
-        left: 17em;
-        text-decoration: underline;
-        position: absolute;
-        top: 145px;
-    }
-
-    h2 {
-        font-size: 2em;
-        color: white;
-        margin-left: 4em;
-        margin-top: 4em;
-        width: 6em;
-    }
-
-    form {
-        margin-left: 7em;
-        background-color: black;
-        width: 25em;
-        padding: 2em;
-    }
-
-
 } */
-
-

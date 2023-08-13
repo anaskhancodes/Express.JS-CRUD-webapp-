@@ -48,15 +48,7 @@ router.post('/post', async (req, res, next) => {
 })
 
 
-
-// GET     /api/v1/posts
-// router.get('/posts', (req, res, next) => {
-
-//     res.send(posts);
-// })
-
-
-router.get('/posts', async(req, res, next) => {
+router.get('/posts', async (req, res, next) => {
     try {
         const cursor = col.find({}).sort({ timestamp: -1 });
         let results = (await cursor.toArray()).reverse();
