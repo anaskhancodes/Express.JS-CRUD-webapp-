@@ -73,7 +73,8 @@ input{
 }
 
 .user-post button{
-    
+    margin-left: 168px;
+    border-radius: -0.7em;
 }
 
 .user-post button:hover {
