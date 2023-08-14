@@ -14,4 +14,4 @@ router.use( commentRouter)
 router.use( postRouter)
 router.use( feedRouter)
 
-export default router
+export default router;
