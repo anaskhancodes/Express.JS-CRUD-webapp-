@@ -108,23 +108,19 @@ router.put('/post/:postId', async (req, res, next) => {
     if (req.body.text) { dataUpdated.text = req.body.text };
 
     try {
-        const updateResponse = await col.updateOne(
-            {
-                _id: new ObjectId(req.params.postId)
-            },
+        const updateResponse = await col.updateOne( { _id: new ObjectId( req.params.postId ) },
 
-            {
-                $set: dataUpdated
-            }
+            { $set: dataUpdated }
         );
 
         if (updateResponse.modifiedCount === 1) {
-            res.send('Post updated with id ' + postId);
-        } else {
-            res.send('Post not found with id ' + postId);
+            res.send('Post updated');
+        } else { 
+            res.send('Post not found');
         }
     } catch (error) {
         console.error(error);
+        res.status(500).send('Server error please try again later')
     }
 });
 
@@ -133,15 +129,24 @@ router.put('/post/:postId', async (req, res, next) => {
 router.delete('/post/:postId', async (req, res, next) => {
     const postId = req.params.postId;
 
+    if (!ObjectId.isValid(req.params.postId)) {
+        res.status(403).send(`Invalid Post id`)
+        return;
+    }
+
     try {
-        const deleteResponse = await col.deleteOne({ id: postId });
+        const deleteResponse = await col.deleteOne( { _id: new ObjectId( req.params.postId ) });
+
+        console.log('deleteResponse', deleteResponse)
+
         if (deleteResponse.deletedCount === 1) {
-            res.send(`post with id ${postId} deleted successfully.`);
-        } else {
-            res.send('Post not found with the given id.');
+            res.send('Post delete');
+        } else { 
+            res.send('Post not found');
         }
     } catch (error) {
         console.error(error);
+        res.status(500).send('Server error please try again later')
     }
 });
 
