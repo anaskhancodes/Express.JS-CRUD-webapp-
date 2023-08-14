@@ -126,7 +126,7 @@
 
         window.editPost = (_id, title, text) => {
 
-            console.log("edit: ", postId);
+            console.log("edit: ", _id);
 
             document.querySelector(`#card-${_id}`).innerHTML = `
                <form onsubmit="savePost('${_id}')">
