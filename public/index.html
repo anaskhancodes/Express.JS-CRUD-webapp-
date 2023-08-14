@@ -124,20 +124,20 @@
                 })
         }
 
-        window.editPost = (postId) => {
+        window.editPost = (postId, title, text) => {
 
-            console.log("delete: ", postId);
+            console.log("edit: ", postId);
 
-            const postIdForSelector = postId.replace(/[^a-zA-Z0-9]/g, '_');
-            document.querySelector(`#card-${postIdForSelector}`).innerHTML =
+            document.querySelector(`#card-${postId}`).innerHTML =
                 `<form onsubmit="savePost('${postId}')">
-                    title: <input type='text' class="user-post" value='${title}' id='title-${postId}' />
-                    <br/>
-                    text: <input type='text' value='${text}' id='text-${postId}' />
-                    <br/>
-                    <button>Save</button>
-                </form>`
+                  title: <input type='text' class="user-post" value='${title}' id='title-${postId}' />
+                  <br/>
+                  text: <input type='text' value='${text}' id='text-${postId}' />
+                  <br/>
+                  <button>Save</button>
+                  </form>`;
         }
+
         window.savePost = (postId) => {
             const updatedTitle = document.querySelector(`#title-${postId}`).value;
             const updatedText = document.querySelector(`#text-${postId}`).value;
