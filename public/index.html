@@ -128,7 +128,8 @@
 
             console.log("delete: ", postId);
 
-            document.querySelector(`#card-${postId}`).innerHTML =
+            const postIdForSelector = postId.replace(/[^a-zA-Z0-9]/g, '_');
+            document.querySelector(`#card-${postIdForSelector}`).innerHTML =
                 `<form onsubmit="savePost('${postId}')">
                     title: <input type='text' class="user-post" value='${title}' id='title-${postId}' />
                     <br/>
