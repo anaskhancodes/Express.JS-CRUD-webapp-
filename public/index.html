@@ -128,8 +128,8 @@
 
             console.log("edit: ", postId);
 
-            document.querySelector(`#card-${postId}`).innerHTML = `
-               <form onsubmit="savePost('${postId}')">
+            document.querySelector(`#card-${_id}`).innerHTML = `
+               <form onsubmit="savePost('${_id}')">
                    title: <input type='text' class="user-post" value='${title}' id='title-${postId}' />
                    <br/>
                    text: <input type='text' value='${text}' id='text-${postId}' />
