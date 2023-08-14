@@ -91,8 +91,8 @@
                             `<div id='card-${eachPost.id}' class="user-post">
                                 <h3>${eachPost.title}</h3>
                                 <p> ${eachPost.text} </p>
-                                <button onclick="delPost('${eachPost.id}')">Delete</button>
-                                <button onclick="editPost('${eachPost.id}','${eachPost.title}','${eachPost.text}', )">Edit</button>
+                                <button onclick="delPost('${eachPost._id}')">Delete</button>
+                                <button onclick="editPost('${eachPost._id}','${eachPost.title}','${eachPost.text}', )">Edit</button>
                             </div> 
                             <br />`
                     })
