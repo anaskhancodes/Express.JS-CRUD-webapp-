@@ -108,11 +108,11 @@
         }
 
 
-        window.delPost = function (postId) {
+        window.delPost = function (_id) {
 
-            console.log("delete => ", postId);
+            console.log("delete => ", _id);
 
-            axios.delete(`/api/v1/post/${postId}`)
+            axios.delete(`/api/v1/post/${_id}`)
 
                 .then(function (response) {
 
@@ -124,9 +124,9 @@
                 })
         }
 
-        window.editPost = (postId, title, text) => {
+        window.editPost = (_id, title, text) => {
 
-            console.log("delete: ", postId);
+            console.log("delete: ", _id);
 
             document.querySelector(`#card-${postId}`).innerHTML =
                 `<form onsubmit="savePost('${postId}')">
@@ -137,11 +137,11 @@
                     <button>Save</button>
                 </form>`
         }
-        window.savePost = (postId) => {
+        window.savePost = (_id) => {
             const updatedTitle = document.querySelector(`#title-${postId}`).value;
             const updatedText = document.querySelector(`#text-${postId}`).value;
 
-            axios.put(`/api/v1/post/${postId}`, {
+            axios.put(`/api/v1/post/${_id}`, {
                 title: updatedTitle,
                 text: updatedText
             })
