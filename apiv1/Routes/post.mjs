@@ -36,7 +36,7 @@ router.post('/post', async (req, res, next) => {
 
     try {
         const insertResponce = await col.insertOne({
-            id: nanoid(),
+            // id: nanoid(),
             title: req.body.title,
             text: req.body.text,
         });
