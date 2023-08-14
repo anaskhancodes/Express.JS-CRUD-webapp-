@@ -60,14 +60,20 @@ input{
     color: aqua;
 }
 
-.user-post input, .user-post button {
+.user-post input{
+    background-color: antiquewhite;
     background-color: antiquewhite;
     margin: 0.5em;
-    padding: 0.2em 0.5em;
+    padding: 1em;
     border: none;
-    border-radius: 0.3em;
+    border-radius: 4.3em;
     font-size: 1em;
     color: black;
+    width: 439px;
+}
+
+.user-post button{
+    
 }
 
 .user-post button:hover {
