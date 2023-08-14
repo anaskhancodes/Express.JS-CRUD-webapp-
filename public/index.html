@@ -88,7 +88,7 @@
 
                     response.data.map((eachPost) => {
                         postsHtml +=
-                            `<div id='card-${eachPost.id}' class="user-post">
+                            `<div id='card-${eachPost._id}' class="user-post">
                                 <h3>${eachPost.title}</h3>
                                 <p> ${eachPost.text} </p>
                                 <button onclick="delPost('${eachPost._id}')">Delete</button>
