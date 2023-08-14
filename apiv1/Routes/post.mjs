@@ -13,7 +13,7 @@ let router = express.Router()
 // not recommended at all - server should be stateless
 let posts = [
     {
-        id: nanoid(),
+        // id: nanoid(),
         title: "Hello Evreyone",
         text: "Welcome Welcome"
     }
