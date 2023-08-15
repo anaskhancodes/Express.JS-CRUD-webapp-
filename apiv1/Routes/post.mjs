@@ -1,6 +1,6 @@
 
 import express from 'express';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { client } from './../../mongobd.mjs'
 import { ObjectId } from 'mongodb'
 

@@ -3,6 +3,7 @@ import path from 'path';
 import apiv1 from './apiv1/auth.mjs'
 import apiv1Router from './apiv1/main.mjs'
 
+
 const __dirname = path.resolve();
 const app = express()
 app.use(express.json()); // body parser
@@ -10,9 +11,9 @@ app.use(express.json()); // body parser
 // app.use(cors())
 
 
-
-
 app.use("/api/v1", apiv1);
+
+
 
 app.use((req, res, next) => { // JWT
   let token = "valid";

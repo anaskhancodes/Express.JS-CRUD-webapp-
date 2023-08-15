@@ -1,7 +1,7 @@
 import express from 'express'
 let router = express.Router()
 
-import authRouter from './auth.mjs'
+// import authapiv1 from './auth.mjs'
 
 router.get('/login', (req, res) => {
   console.log("You're Login! => ", Date())
@@ -13,6 +13,6 @@ router.get('/SignUp', (req, res) => {
   res.send("You're SignUp => " + Date())
 })
 
-router.use(authRouter)
+// router.use(authapiv1)
 
 export default router 
