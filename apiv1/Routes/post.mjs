@@ -53,7 +53,11 @@ router.post('/post', async (req, res, next) => {
 
 router.get('/posts', async (req, res, next) => {
     try {
-        const cursor = col.find({}).sort({ timestamp: -1 });
+        //  
+        const cursor = col.find({})
+        .sort({ timestamp: -1 })
+        .limit(100);
+        // 
         let results = (await cursor.toArray()).reverse();
 
         console.log("result ", results);
