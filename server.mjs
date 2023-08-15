@@ -1,7 +1,6 @@
 import express from 'express'
 import path from 'path';
-import apiv1 from './apiv1/auth.mjs'
-import apiv1Router from './apiv1/main.mjs'
+import apiv1 from './apiv1/Routes/auth.mjs'
 
 
 const __dirname = path.resolve();
@@ -15,6 +14,12 @@ app.use("/api/v1", apiv1);
 
 
 
+
+
+import apiv1Router from './apiv1/main.mjs'
+
+
+
 app.use((req, res, next) => { // JWT
   let token = "valid";
   if (token === "valid"){
@@ -25,6 +30,8 @@ app.use((req, res, next) => { // JWT
   }
 })
 
+// /api/v1/unAuth
+app.use("/api/v1", apiv1);
 
 app.use("/api/v1", apiv1Router) // secure API's
 
