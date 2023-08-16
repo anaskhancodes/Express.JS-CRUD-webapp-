@@ -1,16 +1,15 @@
 import express from 'express'
 import path from 'path';
+import jwt from 'jsonwebtoken';
 import apiv1 from './apiv1/Routes/auth.mjs'
 
 
 const __dirname = path.resolve();
 const app = express()
 app.use(express.json()); // body parser
-////////////////////////////////////////////
-// app.use(cors())
 
 
-app.use("/api/v1", apiv1);
+// app.use("/api/v1", apiv1);
 
 
 
@@ -21,7 +20,7 @@ import apiv1Router from './apiv1/main.mjs'
 
 
 app.use((req, res, next) => { // JWT
-  let token = "valid";
+  let token = "valid"
   if (token === "valid"){
     next();
     

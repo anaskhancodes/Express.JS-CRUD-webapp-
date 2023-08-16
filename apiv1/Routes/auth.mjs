@@ -1,46 +1,114 @@
 import express from 'express'
 let router = express.Router()
+import jwt from 'jsonwebtoken'
+import { client } from './../../mongobd.mjs'
+
+import {
+  stringToHash,
+  varifyHash
+} from "bcrypt-inzi";
+
+const col = client.db("auth").collection("authuser")
+
 
 // import authapiv1 from './auth.mjs'
 
-router.get('/login', (req, res) => {
-  console.log("You're Login! => ", Date())
-  res.send("You're Login! =>" + Date())
-})
+router.post('/login', async (req, res) => {
 
-
-////////////////////////////////////////////////  
-
-router.get('/SignUp', async(req, res) => {
-  console.log("You're SignUp => ", Date())
-  
-  if (!req.body.firstName || !req.body.lastNmae || !req.body.email || !req.body.password) {
-    res.status(403);
-    res.send(`required parameters missing`);
+  if (!req.body.email || !req.body.password) {
+    res.status(403)
+    res.send(`required perameter missing `)
     return;
-}
+  }
 
-const responseHTML = `<div style="color: white; margin-left: 20px;">Post is Created`;
+  req.body.email = req.body.email.tolowerCase;
+
+  try {
+
+    let result = await col.findOne({ email: req.body.email })
+    if (!result) {
+      res.status(403).send({ messagea: "email or password is incorrect" });
+      return;
+
+    } else {
+      //user mil raha he 
+      const isMatch = await varifyHash(req.body.password, result.password);
+
+      if (isMatch) {
+
+        const token = jwt.sign({
+          isAdmin: false,
+          firstName: result.firstName,
+          lastName: result.lastName,
+          email: req.body.email,
+
+        }, Process.env.SECRET, {
+          expiresIn: '24h'
+        });
+
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: true
+        });
+
+        res.send({ message: 'login sucessfull' })
+        return;
+      }
+
+      else {
+        res.status(401).send({ message: "incorect password or email" })
+        return;
+      }
+    }
+  }
+  catch (e) {
+    console.log("error in getting data", e)
+  }
+});
 
 
-try {
-    const insertResponce = await col.insertOne({
-        // id: nanoid(),
-        title: req.body.title,
-        text: req.body.text,
-    });
 
-    console.log("insertResponce => ", insertResponce);
 
-    res.send(responseHTML);
-} catch (error) {
-    console.log("Error", error);
-    res.status(500).send("Server error please try again later")
-}
+
+
+
+router.post('/singup ', async (req, res, next) => {
+  if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
+
+    res.status(403);
+    res.send("require perameter is missing ")
+    return;
+  }
+
+  req.body.email = req.body.email.tolowerCase();
+
+  try {
+
+    let result = await col.findOne({ email: req.body.email });
+
+    if (!result) {
+
+      const passwordHash = await stringToHash(req.body.password);
+
+      const insertResponse = await col.insertOne(
+        {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          password: passwordHash,
+          createdOn: new Date()
+        }
+      );
+    }
+  }
+  catch (e) {
+    res.status(500).send({
+      mesaage: 'SERVER ERROR'
+    })
+
+  }
 
 
 })
 
-// router.use(authapiv1)
-
-export default router 
+export default router
