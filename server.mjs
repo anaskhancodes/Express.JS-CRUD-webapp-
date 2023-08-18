@@ -28,6 +28,9 @@ app.use(cookieParser()); // cookie parser
 app.use("/api/v1", apiv1RouterAuth)
 
 
+app.use("/signup", express.static(path.join(__dirname, 'public/signup/index.html')))
+
+
 app.use((req, res, next) => { // JWT
   const token = req.cookies.token;
   try {
